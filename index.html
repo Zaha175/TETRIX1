@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,37 +21,37 @@
             --s-color: #00f000; /* S-block: green */
             --t-color: #a000f0; /* T-block: purple */
             --z-color: #f00000; /* Z-block: red */
-            
-            /* Accent colors */
-            --accent1: #f05050;
-            --accent2: #50f050;
-            --accent3: #5050f0;
         }
 
         body {
             margin: 0;
-            font-family: 'Press Start 2P', 'Courier New', monospace;
+            padding: 0;
+            font-family: 'Courier New', monospace;
             background-color: var(--background);
             color: var(--text-color);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
             min-height: 100vh;
-            overflow: hidden;
+            overflow-x: hidden;
             background-image: 
                 radial-gradient(circle at 50% 50%, rgba(100, 100, 255, 0.15) 0%, transparent 60%),
                 linear-gradient(to right, rgba(20, 20, 40, 0.8), rgba(20, 30, 70, 0.8));
         }
 
+        .game-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            box-sizing: border-box;
+            width: 100%;
+            max-width: 100%;
+        }
+
         .title {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
+            font-size: 2rem;
+            margin: 10px 0;
             text-align: center;
             color: var(--primary-color);
-            text-shadow: 0 0 10px rgba(93, 92, 222, 0.5), 0 0 15px rgba(93, 92, 222, 0.3);
-            letter-spacing: 2px;
-            margin-top: 1rem;
+            text-shadow: 0 0 10px rgba(93, 92, 222, 0.5);
         }
 
         .container {
@@ -59,11 +59,11 @@
             flex-direction: row;
             align-items: flex-start;
             justify-content: center;
-            margin: 1rem;
-            gap: 2rem;
+            gap: 15px;
             flex-wrap: wrap;
             width: 100%;
             max-width: 1200px;
+            margin: 0 auto;
         }
 
         .game-area {
@@ -74,13 +74,14 @@
 
         .board-container {
             position: relative;
-            width: 400px; /* Increased from 320px */
-            height: 700px; /* Increased from 640px */
+            width: 360px; /* Adjusted width */
+            height: 500px; /* Reduced height */
             background-color: var(--board-color);
             border: 4px solid var(--board-border);
             border-radius: 4px;
-            box-shadow: 0 0 30px rgba(93, 92, 222, 0.3);
+            box-shadow: 0 0 20px rgba(93, 92, 222, 0.3);
             overflow: hidden;
+            margin-bottom: 10px;
         }
 
         .board {
@@ -98,41 +99,30 @@
             border-radius: 2px;
         }
 
-        .side-panel {
+        .info-panel {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1.5rem;
-            min-width: 180px;
+            flex-direction: row;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 10px;
+            width: 100%;
         }
 
-        .stats-container, .next-container, .hold-container, .mouse-help-container {
+        .stats-container, .next-container, .hold-container {
             background-color: var(--board-color);
             border: 2px solid var(--board-border);
             border-radius: 4px;
-            padding: 1rem;
-            width: 180px;
-            box-shadow: 0 0 20px rgba(93, 92, 222, 0.2);
+            padding: 8px;
+            min-width: 100px;
+            box-shadow: 0 0 10px rgba(93, 92, 222, 0.2);
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        .stats-container {
-            height: auto;
-        }
-
-        .next-container, .hold-container {
-            height: 110px;
-        }
-
-        .mouse-help-container {
-            height: auto;
-            padding: 0.75rem;
-        }
-
         .preview-board, .hold-board {
-            width: 100%;
+            width: 80px;
             height: 80px;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -145,62 +135,77 @@
             border-radius: 2px;
         }
 
-        .stats-label, .next-label, .hold-label, .mouse-label {
+        .stats-label, .next-label, .hold-label {
             font-size: 14px;
-            margin-bottom: 0.5rem;
+            margin-bottom: 5px;
             color: var(--primary-color);
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
         .stats-value {
             font-size: 16px;
-            margin-bottom: 0.75rem;
+            margin-bottom: 8px;
+            font-weight: bold;
         }
 
-        .mouse-instruction {
-            font-size: 12px;
-            margin-bottom: 0.5rem;
-            color: var(--text-color);
-            text-align: center;
-        }
-
-        .mouse-icon {
-            width: 40px;
-            height: 40px;
-            margin: 0.5rem 0;
+        .controls-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .controls {
             display: flex;
             flex-direction: row;
-            justify-content: space-between;
-            width: 400px;
+            justify-content: space-around;
+            flex-wrap: wrap;
             background-color: var(--board-color);
             border: 2px solid var(--board-border);
             border-radius: 4px;
-            padding: 1rem;
-            margin-top: 1rem;
+            padding: 10px;
+            gap: 15px;
         }
 
         .control-column {
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
+            gap: 5px;
         }
 
         .controls-title {
             font-size: 14px;
-            margin-bottom: 0.5rem;
+            margin-bottom: 5px;
             color: var(--primary-color);
             text-transform: uppercase;
-            letter-spacing: 1px;
             text-align: center;
         }
 
         .control-key {
             font-size: 12px;
-            margin-bottom: 0.5rem;
+            margin-bottom: 3px;
+            color: var(--text-color);
+        }
+
+        .mouse-help {
+            background-color: var(--board-color);
+            border: 2px solid var(--board-border);
+            border-radius: 4px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .mouse-label {
+            font-size: 14px;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .mouse-instruction {
+            font-size: 12px;
             color: var(--text-color);
         }
 
@@ -208,13 +213,13 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
+            right: 0;
+            bottom: 0;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            background-color: rgba(0, 0, 0, 0.7);
             z-index: 100;
             opacity: 0;
             pointer-events: none;
@@ -230,20 +235,20 @@
             background-color: var(--board-color);
             border: 4px solid var(--primary-color);
             border-radius: 8px;
-            padding: 2rem;
+            padding: 20px;
             text-align: center;
             max-width: 80%;
         }
 
         .overlay-title {
             font-size: 24px;
-            margin-bottom: 1rem;
+            margin-bottom: 15px;
             color: var(--primary-color);
         }
 
         .overlay-message {
             font-size: 16px;
-            margin-bottom: 1.5rem;
+            margin-bottom: 20px;
         }
 
         .btn {
@@ -251,30 +256,24 @@
             color: white;
             border: none;
             border-radius: 4px;
-            padding: 0.75rem 1.5rem;
+            padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
-            transition: background-color 0.2s, transform 0.1s;
-            font-family: 'Press Start 2P', 'Courier New', monospace;
+            transition: background-color 0.2s;
         }
 
         .btn:hover {
             background-color: #6b6ae8;
-            transform: translateY(-2px);
-        }
-
-        .btn:active {
-            transform: translateY(1px);
         }
 
         .mobile-controls {
-            display: none;
+            display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 15px;
+            gap: 10px;
             width: 100%;
-            max-width: 400px;
-            margin-top: 1rem;
+            max-width: 360px;
+            margin: 10px auto;
         }
 
         .mobile-btn-row {
@@ -285,8 +284,8 @@
         }
 
         .mobile-btn {
-            width: 70px;
-            height: 70px;
+            width: 60px;
+            height: 60px;
             background-color: rgba(93, 92, 222, 0.8);
             border: none;
             border-radius: 50%;
@@ -294,15 +293,8 @@
             justify-content: center;
             align-items: center;
             color: white;
-            font-size: 28px;
+            font-size: 24px;
             cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        .mobile-btn:active {
-            transform: scale(0.95);
-            background-color: rgba(93, 92, 222, 1);
         }
 
         .mobile-action-row {
@@ -314,22 +306,16 @@
 
         .mobile-action {
             flex: 1;
-            height: 50px;
+            height: 40px;
             background-color: rgba(93, 92, 222, 0.8);
             border: none;
-            border-radius: 25px;
+            border-radius: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
             color: white;
-            font-size: 16px;
+            font-size: 14px;
             cursor: pointer;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        .mobile-action:active {
-            transform: scale(0.95);
-            background-color: rgba(93, 92, 222, 1);
         }
 
         .particle {
@@ -344,7 +330,7 @@
             position: absolute;
             left: 0;
             width: 100%;
-            height: 35px; /* Adjusted for larger board */
+            height: 25px; /* Adjusted for smaller board */
             background-color: white;
             opacity: 0.8;
             z-index: 5;
@@ -373,9 +359,9 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 48px;
+            font-size: 36px;
             color: #ffcc00;
-            text-shadow: 0 0 20px rgba(255, 204, 0, 0.8);
+            text-shadow: 0 0 15px rgba(255, 204, 0, 0.8);
             z-index: 90;
             pointer-events: none;
             opacity: 0;
@@ -392,8 +378,8 @@
         /* Mouse indicator */
         .mouse-indicator {
             position: absolute;
-            width: 30px;
-            height: 30px;
+            width: 20px;
+            height: 20px;
             border: 2px solid rgba(255, 255, 255, 0.8);
             border-radius: 50%;
             pointer-events: none;
@@ -401,124 +387,137 @@
             display: none;
         }
 
-        /* Responsive design */
-        @media (max-width: 900px) {
+        /* Desktop-specific styles */
+        @media (min-width: 1024px) {
+            .board-container {
+                width: 400px;
+                height: 600px;
+            }
+            
             .container {
-                flex-direction: column-reverse;
-                align-items: center;
-                gap: 1rem;
+                flex-wrap: nowrap;
             }
-
-            .side-panel {
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 1rem;
-                width: 100%;
+            
+            .info-panel {
+                flex-direction: column;
+                width: auto;
             }
-
+            
             .mobile-controls {
-                display: flex;
-            }
-
-            .controls {
                 display: none;
             }
         }
 
-        /* For small screens, make the game board smaller but still wider than original */
-        @media (max-width: 480px) {
+        /* Tablet-specific styles */
+        @media (min-width: 768px) and (max-width: 1023px) {
             .board-container {
-                width: 320px;
-                height: 560px;
+                width: 380px;
+                height: 520px;
             }
-
-            .controls {
-                width: 320px;
+            
+            .desktop-controls {
+                display: none;
             }
-
-            .next-container, .hold-container, .stats-container, .mouse-help-container {
-                width: 140px;
-                padding: 0.75rem;
+            
+            .mobile-controls {
+                display: flex;
             }
+        }
 
+        /* Mobile-specific styles */
+        @media (max-width: 767px) {
+            .board-container {
+                width: 300px;
+                height: 400px;
+            }
+            
             .title {
-                font-size: 1.8rem;
+                font-size: 1.5rem;
             }
-
+            
+            .desktop-controls {
+                display: none;
+            }
+            
+            .mobile-controls {
+                display: flex;
+            }
+            
             .mobile-btn {
-                width: 60px;
-                height: 60px;
-                font-size: 24px;
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <h1 class="title">Enhanced Retro Tetris</h1>
-    
-    <div class="container">
-        <div class="side-panel">
-            <div class="hold-container">
-                <div class="hold-label">Hold</div>
-                <div class="hold-board" id="holdBoard"></div>
+    <div class="game-wrapper">
+        <h1 class="title">Enhanced Retro Tetris</h1>
+        
+        <div class="container">
+            <div class="info-panel">
+                <div class="hold-container">
+                    <div class="hold-label">Hold</div>
+                    <div class="hold-board" id="holdBoard"></div>
+                </div>
+                
+                <div class="stats-container">
+                    <div class="stats-label">Score</div>
+                    <div class="stats-value" id="score">0</div>
+                    
+                    <div class="stats-label">Level</div>
+                    <div class="stats-value" id="level">1</div>
+                    
+                    <div class="stats-label">Lines</div>
+                    <div class="stats-value" id="lines">0</div>
+                    
+                    <div class="stats-label">Highscore</div>
+                    <div class="stats-value" id="highscore">0</div>
+                </div>
+                
+                <div class="next-container">
+                    <div class="next-label">Next</div>
+                    <div class="preview-board" id="nextBoard"></div>
+                </div>
             </div>
             
-            <div class="stats-container">
-                <div class="stats-label">Score</div>
-                <div class="stats-value" id="score">0</div>
-                
-                <div class="stats-label">Level</div>
-                <div class="stats-value" id="level">1</div>
-                
-                <div class="stats-label">Lines</div>
-                <div class="stats-value" id="lines">0</div>
-                
-                <div class="stats-label">Highscore</div>
-                <div class="stats-value" id="highscore">0</div>
-            </div>
-            
-            <div class="next-container">
-                <div class="next-label">Next</div>
-                <div class="preview-board" id="nextBoard"></div>
-            </div>
-            
-            <div class="mouse-help-container">
-                <div class="mouse-label">Maus Steuerung</div>
-                <div class="mouse-instruction">Links-Klick: Drehen</div>
-                <div class="mouse-instruction">Rechts-Klick: Schnell Fallen</div>
-                <div class="mouse-instruction">Maus Links/Rechts: Bewegen</div>
+            <div class="game-area">
+                <div class="board-container">
+                    <div class="board" id="board"></div>
+                    <div class="mouse-indicator" id="mouseIndicator"></div>
+                    <div class="overlay" id="startOverlay">
+                        <div class="overlay-content">
+                            <div class="overlay-title">Tetris</div>
+                            <div class="overlay-message">Drücke Start zum Spielen!</div>
+                            <button class="btn" id="startBtn">Start Game</button>
+                        </div>
+                    </div>
+                    <div class="overlay" id="pauseOverlay">
+                        <div class="overlay-content">
+                            <div class="overlay-title">Pause</div>
+                            <div class="overlay-message">Mach eine Pause!</div>
+                            <button class="btn" id="resumeBtn">Weiter</button>
+                        </div>
+                    </div>
+                    <div class="overlay" id="gameOverOverlay">
+                        <div class="overlay-content">
+                            <div class="overlay-title">Game Over</div>
+                            <div class="overlay-message">Dein Score: <span id="finalScore">0</span></div>
+                            <button class="btn" id="restartBtn">Noch Einmal</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         
-        <div class="game-area">
-            <div class="board-container">
-                <div class="board" id="board"></div>
-                <div class="mouse-indicator" id="mouseIndicator"></div>
-                <div class="overlay" id="startOverlay">
-                    <div class="overlay-content">
-                        <div class="overlay-title">Tetris</div>
-                        <div class="overlay-message">Drücke Start zum Spielen!</div>
-                        <button class="btn" id="startBtn">Start Game</button>
-                    </div>
-                </div>
-                <div class="overlay" id="pauseOverlay">
-                    <div class="overlay-content">
-                        <div class="overlay-title">Pause</div>
-                        <div class="overlay-message">Mach eine Pause!</div>
-                        <button class="btn" id="resumeBtn">Weiter</button>
-                    </div>
-                </div>
-                <div class="overlay" id="gameOverOverlay">
-                    <div class="overlay-content">
-                        <div class="overlay-title">Game Over</div>
-                        <div class="overlay-message">Dein Score: <span id="finalScore">0</span></div>
-                        <button class="btn" id="restartBtn">Noch Einmal</button>
-                    </div>
-                </div>
+        <div class="controls-container">
+            <div class="mouse-help">
+                <div class="mouse-label">Maus Steuerung</div>
+                <div class="mouse-instruction">Links-Klick: Drehen | Rechts-Klick: Schnell Fallen | Maus Links/Rechts: Bewegen</div>
             </div>
             
-            <div class="controls">
+            <div class="controls desktop-controls">
                 <div class="control-column">
                     <div class="controls-title">Tastatur</div>
                     <div class="control-key">↑ / W: Drehen</div>
@@ -555,8 +554,6 @@
         // Game constants
         const COLS = 10;
         const ROWS = 20;
-        const BLOCK_SIZE = 35; // px - increased for larger board
-        const PREVIEW_SIZE = 20; // px
         const EMPTY = 0;
         const GHOST_ALPHA = 0.3;
         
@@ -655,6 +652,7 @@
         let mouseSensitivity = 20; // pixels to move before triggering piece movement
         let mouseMovementTimer = null;
         let isMobile = false;
+        let cellSize = 0;
         
         // DOM elements
         const boardElement = document.getElementById('board');
@@ -686,7 +684,14 @@
         // Check if device is mobile
         function checkMobile() {
             return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
-                   window.innerWidth <= 900;
+                   window.innerWidth <= 768;
+        }
+        
+        // Calculate cell size based on board dimensions
+        function calculateCellSize() {
+            const boardWidth = boardElement.clientWidth;
+            const boardHeight = boardElement.clientHeight;
+            return Math.min(boardWidth / COLS, boardHeight / ROWS);
         }
         
         // Initialize the game
@@ -698,6 +703,9 @@
             createBoard(boardElement, ROWS, COLS, 'cell');
             createBoard(nextBoardElement, 4, 4, 'preview-cell');
             createBoard(holdBoardElement, 4, 4, 'hold-cell');
+            
+            // Calculate cell size
+            cellSize = calculateCellSize();
             
             // Load highscore from localStorage
             try {
@@ -714,20 +722,19 @@
             document.addEventListener('keydown', handleKeyPress);
             
             // Mouse controls
-            if (!isMobile) {
-                boardElement.addEventListener('mousemove', handleMouseMove);
-                boardElement.addEventListener('mousedown', handleMouseClick);
-                boardElement.addEventListener('contextmenu', (e) => {
-                    e.preventDefault(); // Prevent context menu
-                    if (gameActive && !gamePaused) {
-                        dropPiece(true); // Hard drop on right click
-                    }
-                });
-            }
+            boardElement.addEventListener('mousemove', handleMouseMove);
+            boardElement.addEventListener('mousedown', handleMouseClick);
+            boardElement.addEventListener('contextmenu', (e) => {
+                e.preventDefault(); // Prevent context menu
+                if (gameActive && !gamePaused) {
+                    dropPiece(true); // Hard drop on right click
+                }
+            });
             
             // Window resize listener
             window.addEventListener('resize', () => {
                 isMobile = checkMobile();
+                cellSize = calculateCellSize();
                 updateMouseIndicator();
             });
             
@@ -744,55 +751,53 @@
             dropBtn.addEventListener('click', () => dropPiece(true));
             
             // Touch events for swipe controls
-            if (isMobile) {
-                let touchStartX = 0;
-                let touchStartY = 0;
-                let touchStartTime = 0;
+            let touchStartX = 0;
+            let touchStartY = 0;
+            let touchStartTime = 0;
+            
+            boardElement.addEventListener('touchstart', (e) => {
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
+                touchStartTime = Date.now();
+            });
+            
+            boardElement.addEventListener('touchend', (e) => {
+                if (!gameActive || gamePaused) return;
                 
-                boardElement.addEventListener('touchstart', (e) => {
-                    touchStartX = e.touches[0].clientX;
-                    touchStartY = e.touches[0].clientY;
-                    touchStartTime = Date.now();
-                });
+                const touchEndX = e.changedTouches[0].clientX;
+                const touchEndY = e.changedTouches[0].clientY;
+                const touchEndTime = Date.now();
                 
-                boardElement.addEventListener('touchend', (e) => {
-                    if (!gameActive || gamePaused) return;
-                    
-                    const touchEndX = e.changedTouches[0].clientX;
-                    const touchEndY = e.changedTouches[0].clientY;
-                    const touchEndTime = Date.now();
-                    
-                    const deltaX = touchEndX - touchStartX;
-                    const deltaY = touchEndY - touchStartY;
-                    const deltaTime = touchEndTime - touchStartTime;
-                    
-                    // Minimum gesture distances and time
-                    const minDistance = 30;
-                    const maxTime = 300;
-                    
-                    // Only process quick gestures
-                    if (deltaTime < maxTime) {
-                        if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > minDistance) {
-                            // Horizontal swipe
-                            if (deltaX > 0) {
-                                movePiece(1); // Right
-                            } else {
-                                movePiece(-1); // Left
-                            }
-                        } else if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > minDistance) {
-                            // Vertical swipe
-                            if (deltaY > 0) {
-                                dropPiece(false); // Soft drop
-                            } else {
-                                rotate(); // Rotate
-                            }
-                        } else if (Math.abs(deltaX) < minDistance && Math.abs(deltaY) < minDistance) {
-                            // Tap - rotate
-                            rotate();
+                const deltaX = touchEndX - touchStartX;
+                const deltaY = touchEndY - touchStartY;
+                const deltaTime = touchEndTime - touchStartTime;
+                
+                // Minimum gesture distances and time
+                const minDistance = 30;
+                const maxTime = 300;
+                
+                // Only process quick gestures
+                if (deltaTime < maxTime) {
+                    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > minDistance) {
+                        // Horizontal swipe
+                        if (deltaX > 0) {
+                            movePiece(1); // Right
+                        } else {
+                            movePiece(-1); // Left
                         }
+                    } else if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > minDistance) {
+                        // Vertical swipe
+                        if (deltaY > 0) {
+                            dropPiece(false); // Soft drop
+                        } else {
+                            rotate(); // Rotate
+                        }
+                    } else if (Math.abs(deltaX) < minDistance && Math.abs(deltaY) < minDistance) {
+                        // Tap - rotate
+                        rotate();
                     }
-                });
-            }
+                }
+            });
             
             // Show start overlay
             startOverlay.classList.add('visible');
@@ -809,7 +814,7 @@
             updateMouseIndicator(mouseX, e.clientY - rect.top);
             
             // Horizontal movement based on mouse position relative to piece center
-            const currentPieceCenter = (currentPiece.x + currentPiece.shape[0].length / 2) * BLOCK_SIZE;
+            const currentPieceCenter = (currentPiece.x + currentPiece.shape[0].length / 2) * cellSize;
             const mouseDiff = mouseX - currentPieceCenter;
             
             // If mouse has moved enough in either direction
@@ -836,10 +841,9 @@
         function handleMouseClick(e) {
             if (!gameActive || gamePaused) return;
             
-            e.preventDefault();
-            
             // Left click rotates
             if (e.button === 0) {
+                e.preventDefault();
                 rotate();
             }
             // Right click hard drops (handled by contextmenu event)
@@ -854,8 +858,8 @@
             
             if (gameActive && !gamePaused && currentPiece) {
                 mouseIndicator.style.display = 'block';
-                mouseIndicator.style.left = `${x - 15}px`; // Center indicator
-                mouseIndicator.style.top = `${y - 15}px`; // Center indicator
+                mouseIndicator.style.left = `${x - 10}px`; // Center indicator
+                mouseIndicator.style.top = `${y - 10}px`; // Center indicator
             } else {
                 mouseIndicator.style.display = 'none';
             }
@@ -1272,7 +1276,7 @@
                         
                         // Create a small sparkle effect
                         for (let i = 0; i < 3; i++) {
-                            createParticle(boardX * BLOCK_SIZE + BLOCK_SIZE / 2, boardY * BLOCK_SIZE + BLOCK_SIZE / 2, currentPiece.color);
+                            createParticle(boardX * cellSize + cellSize / 2, boardY * cellSize + cellSize / 2, currentPiece.color);
                         }
                     }
                 }
@@ -1360,7 +1364,7 @@
             lines.forEach(lineY => {
                 const flash = document.createElement('div');
                 flash.classList.add('line-clear-flash');
-                flash.style.top = `${lineY * BLOCK_SIZE}px`;
+                flash.style.top = `${lineY * cellSize}px`;
                 boardElement.appendChild(flash);
                 
                 // Remove after animation
